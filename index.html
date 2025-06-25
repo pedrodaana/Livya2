@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Lívya 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background: linear-gradient(to bottom, #ffe6f0, #ffccf2);
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .carta {
+      width: 90%;
+      max-width: 800px;
+      background: white;
+      margin: 80px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ffb6d9;
+      z-index: 2;
+      position: relative;
+    }
+
+    .carta h1 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 20px;
+    }
+
+    .carta p {
+      text-align: justify;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 15px;
+    }
+
+    .assinatura {
+      text-align: right;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #d63384;
+    }
+
+    .coracao {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background-color: pink;
+      transform: rotate(45deg);
+      cursor: pointer;
+      animation: flutuar 10s linear infinite;
+      z-index: 1;
+    }
+
+    .coracao::before,
+    .coracao::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .coracao::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .coracao::after {
+      left: -15px;
+      top: 0;
+    }
+
+    @keyframes flutuar {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .estrela {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: hotpink;
+      border-radius: 50%;
+      animation: explodir 1s ease-out forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes explodir {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(3) translateY(-50px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="carta">
+  <h1>💌 Para Lívya 💖</h1>
+  <p>Lívya,</p>
+  <p>Talvez essas palavras sejam apenas palavras...  
+  Ou talvez sejam o início de algo bonito que ainda nem sabemos nomear.</p>
+
+  <p>É engraçado como algumas pessoas chegam devagarinho, sem fazer barulho, mas aos poucos ocupam todos os cantinhos da nossa cabeça, do nosso tempo, dos nossos sorrisos. Você tem sido isso pra mim: uma presença leve, bonita e ao mesmo tempo forte o bastante pra mexer com tudo aqui dentro.</p>
+
+  <p>Não sei exatamente quando começou, mas percebi que pensar em você virou hábito. Que conversar com você faz meu dia ganhar cor. Que seu jeito, seu sorriso, sua energia me encantam de um jeito que eu nem sei explicar direito. É como se meu coração reconhecesse algo no seu.</p>
+
+  <p>Não tô aqui pra apressar nada. Só queria te dizer, com todo carinho do mundo, que gosto muito de você. E que se, por acaso, seu coração também sentir que existe algo aqui, quem sabe a gente descobre juntos onde isso pode nos levar?</p>
+
+  <p>Porque às vezes, tudo o que a gente precisa é de um começo. E talvez... talvez esse aqui possa ser o nosso. 🌸</p>
+
+  <div class="assinatura">Com carinho (e talvez algo mais),<br> Ares 💗</div>
+</div>
+
+<script>
+  function criarCoracao() {
+    const coracao = document.createElement("div");
+    coracao.classList.add("coracao");
+    coracao.style.left = Math.random() * window.innerWidth + "px";
+    coracao.style.top = window.innerHeight + "px";
+
+    coracao.addEventListener("click", () => {
+      for (let i = 0; i < 15; i++) {
+        const estrela = document.createElement("div");
+        estrela.classList.add("estrela");
+        estrela.style.left = coracao.style.left;
+        estrela.style.top = coracao.style.top;
+        document.body.appendChild(estrela);
+
+        estrela.style.transform = `translate(${(Math.random() - 0.5) * 200}px, ${(Math.random() - 0.5) * 200}px) scale(1.5)`;
+        setTimeout(() => estrela.remove(), 1000);
+      }
+      coracao.remove();
+    });
+
+    document.body.appendChild(coracao);
+
+    setTimeout(() => {
+      if (document.body.contains(coracao)) coracao.remove();
+    }, 10000);
+  }
+
+  setInterval(criarCoracao, 500);
+</script>
+
+</body>
+</html>
